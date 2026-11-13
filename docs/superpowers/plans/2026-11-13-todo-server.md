@@ -694,7 +694,7 @@ export function createApp(db) {
 - [ ] **Step 5: 跑全量测试确认通过**
 
 Run: `npm test`
-Expected: PASS，三个测试文件（dao 7 + service 5 + api 17）全部通过。
+Expected: PASS，三个测试文件（dao 7 + service 5 + api 20）全部通过，共 32 个用例。
 
 - [ ] **Step 6: Commit**
 
