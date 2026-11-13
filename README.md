@@ -1,11 +1,12 @@
 # TodoList 全栈应用
 
-前后端一体仓库：`client/` 是 Vite + React 界面，根目录是 Express + SQLite 的 REST API（三层结构 routes → services → db）。
+`server/` + `client/` 前后端分离仓库：服务端 Express + SQLite（三层结构 routes → services → db），客户端 Vite + React。
 
 ## 启动（需要两个终端）
 
 ```bash
 # 终端 1：启动服务端（http://localhost:3001）
+cd server
 npm install
 npm run dev
 
@@ -15,7 +16,7 @@ npm install
 npm run dev
 ```
 
-浏览器打开前端地址即可使用。数据落盘在 `data/todos.db`，重启不丢。
+浏览器打开前端地址即可使用。数据落盘在 `server/data/todos.db`，重启不丢。
 
 ## API
 
@@ -39,13 +40,15 @@ npm test        # vitest 全量（dao / service / api 三层）
 ## 结构
 
 ```
-client/                 # 前端（Vite + React，TodoList.jsx 调 /api）
+server/                    # 服务端
+├── src/
+│   ├── server.js          # 入口：开库、监听端口
+│   ├── app.js             # createApp(db)：中间件 + 路由组装
+│   ├── errors.js          # HttpError
+│   ├── routes/todos.js    # HTTP 参数校验
+│   ├── services/todoService.js  # 业务规则
+│   └── db/                # SQLite 连接 + todoDao
+└── test/                  # vitest（dao / service / api 三层）
+client/                    # 前端（Vite + React，TodoList.jsx 调 /api）
 └── src/
-src/                    # 服务端
-├── server.js            # 入口：开库、监听端口
-├── app.js               # createApp(db)：中间件 + 路由组装
-├── errors.js            # HttpError
-├── routes/todos.js      # HTTP 参数校验
-├── services/todoService.js  # 业务规则
-└── db/                  # SQLite 连接 + todoDao
 ```

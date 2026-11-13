@@ -1,4 +1,4 @@
 node_modules/
-data/*
-!data/.gitkeep
+server/data/*
+!server/data/.gitkeep
 *.log
