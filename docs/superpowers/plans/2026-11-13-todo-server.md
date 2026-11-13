@@ -41,13 +41,14 @@ Expected: `v20.x.x` 或更高。低于 v20 停止执行，先升级 Node。
 
 - [ ] **Step 2: 删除前端副本**
 
+删除这些路径（整个 `src/` 连根删）：
+
 ```powershell
-git rm -r --cached . 2>$null; # 不需要，直接删文件即可，git 会跟踪
 Remove-Item index.html, vite.config.js, package-lock.json -Force
 Remove-Item src -Recurse -Force
 ```
 
-（执行时等价命令即可，核心是这五个路径消失：`index.html`、`vite.config.js`、`package-lock.json`、`src/App.jsx`、`src/main.jsx`、`src/TodoList.jsx`、`src/TodoList.css`、`vite.config.js`——整个 `src/` 连根删。）
+Expected: `Test-Path index.html, src` 均为 False；`git status` 显示这些文件为 deleted。
 
 - [ ] **Step 3: 重写 `package.json`**
 
@@ -67,28 +68,18 @@ Remove-Item src -Recurse -Force
 
 - [ ] **Step 4: 重写 `.gitignore`**
 
-```
-node_modules/
-data/
-*.log
-```
-
-`data/` 整体忽略运行时数据库文件；用 `data/.gitkeep` 占位保证目录进库：
-
-```powershell
-New-Item -ItemType Directory -Force data | Out-Null
-New-Item -ItemType File data\.gitkeep
-```
-
-（`.gitignore` 写 `data/` 时不忽略 `.gitkeep` 需要例外行。改为忽略具体文件更直接：）
-
-最终 `.gitignore`：
+`data/` 下运行时数据库文件要忽略，但 `.gitkeep` 占位需进库，用例外行：
 
 ```
 node_modules/
 data/*
 !data/.gitkeep
 *.log
+```
+
+```powershell
+New-Item -ItemType Directory -Force data | Out-Null
+New-Item -ItemType File data\.gitkeep
 ```
 
 - [ ] **Step 5: 安装依赖**
