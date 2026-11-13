@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f8;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+.todo {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.add input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d9dce1;
+  border-radius: 6px;
+  outline: none;
+}
+
+.add input:focus {
+  border-color: #4a7dff;
+}
+
+button {
+  padding: 6px 12px;
+  border: 1px solid #d9dce1;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.add button {
+  background: #4a7dff;
+  border-color: #4a7dff;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px;
+  border-bottom: 1px solid #f0f1f3;
+}
+
+li label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+li.done span {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.del {
+  border: none;
+  color: #e5484d;
+  background: none;
+}
+
+.empty {
+  justify-content: center;
+  color: #aaa;
+  border-bottom: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+}
+
+.filters .active {
+  color: #4a7dff;
+  border-color: #4a7dff;
+}
